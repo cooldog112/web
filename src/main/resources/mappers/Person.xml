@@ -11,7 +11,7 @@
     </insert>
 
     <select id="get" parameterType="com.dge.web.domain.Person" resultType="com.dge.web.domain.Person">
-        select id, user_id, period, applicant, candidate, absentee, created, updated
+        select max(id), user_id, period, applicant, candidate, absentee, created, updated
         from person
         where user_id=#{userId} and period=#{period}
         order by id desc
@@ -27,9 +27,11 @@
     <select id="findByUserId" parameterType="Long" resultType="HashMap">
         select id, user_id, period, applicant, candidate, absentee, created, updated
         from person
-        where user_id=#{userId}
-        group by period
+        where id in (select max(id)
+                    from person
+                    where user_id =  #{userId} group by period)
         order by period
+
     </select>
 
     <select id="findAll" resultType="HashMap">

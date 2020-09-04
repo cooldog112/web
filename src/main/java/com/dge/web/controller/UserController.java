@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -26,8 +27,16 @@ public class UserController {
     }
 
     @PostMapping(value = "/user/login")
-    public User login(@RequestBody User user) {
-        return userService.login(user);
+    public User login(@RequestBody User user, HttpSession session) {
+        User dbUser = userService.login(user);
+        if(dbUser == null){
+            return null;
+
+        }else{
+            session.setAttribute("ID", dbUser);
+            return dbUser;
+        }
+
     }
 
 

@@ -311,7 +311,7 @@ async function removeComment(button, id) {
         $(`#line${id}`).find('div:nth-child(3)').html('');
     }
 }
-Cookie
+
 async function login() {
 
     let login = {
