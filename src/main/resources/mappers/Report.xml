@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dge.web.domain.ReportMapper">
+    <insert id="add" parameterType="com.dge.web.domain.Report">
+        insert into report(user_id, position, name, error, content)
+        values(#{userId}, #{position}, #{name}, #{error}, #{content})
+        <selectKey keyProperty="id" resultType="Long">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+
+    <select id="findById" parameterType="Long" resultType="com.dge.web.domain.Report">
+        select id, user_id, position, name, error, content, created, updated
+        from report
+        where id=#{id}
+    </select>
+
+    <select id="findByUserId" parameterType="Long" resultType="HashMap">
+        select count(*) as count, sum(likes) as sum
+        from report r left join user u on r.user_id = u.id
+        where u.id=#{userId}
+    </select>
+
+    <select id="findAll" resultType="HashMap">
+        select p.id, user_id as user_id, category, account, name, title, content, views, likes, p.created, p.updated
+        from report r left join user u on r.user_id = u.id
+        order by p.id desc
+    </select>
+</mapper>

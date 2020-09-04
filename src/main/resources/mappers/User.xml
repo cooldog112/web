@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dge.web.domain.UserMapper">
+    <insert id="add" parameterType="com.dge.web.domain.User">
+        insert into user(account, password, testRoomNum, applicantNum, stored_path, original_name)
+        values(#{account}, #{password}, #{testRoomNum}, #{applicantNum}, #{storedPath}, #{originalName})
+        <selectKey keyProperty="id" resultType="Long">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+
+    <update id="modify" parameterType="com.dge.web.domain.User">
+        update user
+        set password=#{password}, stored_path=#{storedPath}, original_name=#{originalName}
+        where id=#{id}
+    </update>
+
+    <delete id="deleteById" parameterType="Long">
+        delete from user where id=#{id}
+    </delete>
+
+    <select id="findById" parameterType="Long" resultType="com.dge.web.domain.User">
+        select id, account, password, testRoomNum, applicantNum,
+          stored_path as storedPath, original_name as originalName, created, updated
+        from user
+        where id=#{id}
+    </select>
+
+    <select id="findByAccount" parameterType="String" resultType="com.dge.web.domain.User">
+        select id, account, password, testRoomNum, applicantNum,
+          stored_path as storedPath, original_name as originalName, created, updated
+        from user
+        where account=#{account}
+    </select>
+
+    <select id="findAll" resultType="com.dge.web.domain.User">
+        select id, account, password, testRoomNum, applicantNum,
+          stored_path as storedPath, original_name as originalName, created, updated
+        from user
+    </select>
+
+    <select id="login" parameterType="com.dge.web.domain.User"
+            resultType="com.dge.web.domain.User">
+        select id, account, password, testRoomNum, applicantNum,
+          stored_path as storedPath, original_name as originalName, created, updated
+        from user
+        where account=#{account} and password=#{password}
+    </select>
+</mapper>

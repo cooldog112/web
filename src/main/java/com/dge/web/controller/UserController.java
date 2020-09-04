@@ -1,0 +1,35 @@
+package com.dge.web.controller;
+
+import com.dge.web.domain.User;
+import com.dge.web.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+public class UserController {
+    @Autowired
+    UserService userService;
+
+    @GetMapping(value = "/user")
+    public List findAll() {
+        return userService.findAll();
+    }
+
+    @GetMapping(value = "/user/{id}")
+    public User findById(@PathVariable("id") Long id) {
+        User user = userService.findById(id);
+        System.out.println(user);
+        return user;
+    }
+
+    @PostMapping(value = "/user/login")
+    public User login(@RequestBody User user) {
+        return userService.login(user);
+    }
+
+
+}
+

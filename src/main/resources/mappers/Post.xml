@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dge.web.domain.PostMapper">
+    <insert id="add" parameterType="com.dge.web.domain.Post">
+        insert into post(user_id, category, title, content)
+        values(#{userId}, #{category}, #{title}, #{content})
+        <selectKey keyProperty="id" resultType="Long">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+
+    <update id="modify" parameterType="com.dge.web.domain.Post">
+        update post
+        set category=#{category}, title=#{title}, content=#{content}, views=#{views}, likes=#{likes}
+        where id=#{id}
+    </update>
+
+    <update id="modifyByViews" parameterType="Long">
+        update post
+        set views = views + 1
+        where id=#{id}
+    </update>
+
+    <update id="modifyByLikes" parameterType="Long">
+        update post
+        set likes = likes + 1
+        where id=#{id}
+    </update>
+
+    <delete id="deleteById" parameterType="Long">
+        delete from post where id=#{id}
+    </delete>
+
+    <select id="findById" parameterType="Long" resultType="com.dge.web.domain.Post">
+        select id, user_id as userId, category, title, content, views, likes, created, updated
+        from post
+        where id=#{id}
+    </select>
+
+    <select id="findByUserId" parameterType="Long" resultType="HashMap">
+        select count(*) as count, sum(likes) as sum
+        from post p left join user u on p.user_id = u.id
+        where u.id=#{userId}
+    </select>
+
+    <select id="findByCategory" parameterType="Long" resultType="HashMap">
+        select p.id, user_id as userId, account, name, category, title, content, views, likes, p.created, p.updated
+        from post p left join user u on p.user_id = u.id
+        where p.category=#{category}
+        order by p.id desc
+    </select>
+
+    <select id="findAllByViews" resultType="HashMap">
+        select p.id, user_id as userId, category, account, name, title, content, views, likes, p.created, p.updated
+        from post p left join user u on p.user_id = u.id
+        order by p.views desc, p.id desc
+    </select>
+
+    <select id="findAllByLikes" resultType="HashMap">
+        select p.id, user_id as userId, category, account, name, title, content, views, likes, p.created, p.updated
+        from post p left join user u on p.user_id = u.id
+        order by p.likes desc, p.id desc
+    </select>
+
+    <select id="findAll" resultType="HashMap">
+        select p.id, user_id as userId, category, account, name, title, content, views, likes, p.created, p.updated
+        from post p left join user u on p.user_id = u.id
+        order by p.id desc
+    </select>
+</mapper>
