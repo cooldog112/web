@@ -51,3 +51,14 @@ create table person (
   created datetime default current_timestamp,
   updated datetime default current_timestamp on update current_timestamp
 ) engine=InnodB default charset=utf8mb4;
+
+create table total(
+    id bigint primary key auto_increment,
+    year integer,
+    period integer,
+    applicant integer,
+    absentee integer,
+    candidate integer,
+    created datetime default current_timestamp,
+    updated datetime default current_timestamp on update current_timestamp
+) engine=InnodB default charset=utf8mb4;

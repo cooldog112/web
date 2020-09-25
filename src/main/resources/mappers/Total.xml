@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dge.web.domain.TotalMapper">
+
+    <select id="findByYear" parameterType="Long" resultType="com.dge.web.domain.Total">
+        select id, year, period, applicant, absentee, candidate, created, updated
+        from total
+        where year=#{year}
+    </select>
+
+    <select id="findAll" resultType="com.dge.web.domain.Total">
+        select id, year, period, applicant, absentee, candidate, created, updated
+        from total
+    </select>
+</mapper>

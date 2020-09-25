@@ -135,6 +135,44 @@ async function getPerson(userId){
 
 }
 
+async function logout(){
+    try {
+        let response = await $.ajax({
+            type: 'get',
+            url: '/logout',
+            contentType: 'application/json',
+            data: JSON.stringify()
+        });
+    } catch (error) {
+        console.log(JSON.stringify(error));
+    }
+}
+async function sessionCheck(){
+    try {
+        let response = await $.ajax({
+            type: 'get',
+            url: '/session',
+            contentType: 'application/json',
+            data: JSON.stringify()
+        });
+
+        if(response.account == "관리자"){
+            location.href="/admin.html";
+        }
+
+        if(response.id == null){
+            openLoginDialog();
+        }else{
+            getUser(response.id);
+            getPerson(response.id)
+            closeLoginDialog();
+        }
+    } catch (error) {
+        console.log(JSON.stringify(error));
+    }
+}
+
+
 async function addPerson() {
     try {
         var radio = document.getElementsByName("radioPeriod");
@@ -325,10 +363,10 @@ async function login() {
         data: JSON.stringify(login),
         success: (data) => {
             user=data;
+            if(user.account == "관리자"){
+                location.href="/admin.html";
+            }
 
-
-
-            console.log(JSON.stringify(data));
             closeLoginDialog();
             getUser(data.id);
             getPerson(data.id);
@@ -357,6 +395,4 @@ async function getUser(id) {
 }
 
 
-
-
-openLoginDialog();
+sessionCheck();

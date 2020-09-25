@@ -29,26 +29,39 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
+
+async function getChartData(){
+    try {
+        let response = await $.get('/total');
+        for (let i = 0; i < response.length; i++) {
+            addTotalLine(response[i]);
+        }
+    } catch (error) {
+        $('#func3Table').html(JSON.stringify(error));
+    }
+}
+const colors = ['red','yellow','blue','#c3e6cb','#dc3545'];
+
+var chartData = {
+        labels: ["2016", "2017", "2018", "2019", "2020"],
+        datasets: [{
+          data: [27772, 30410, 30863, 31493, 33366],
+          label : "1교시",
+          backgroundColor : 'transparent',
+          borderColor:colors[0],
+          borderWidth:3,
+          pointBackgroundColor: colors[0]
+        }]
+    }
+
+async function getChartData(){
+    alert("getChartData()");
+
+}
+
 var myLineChart = new Chart(ctx, {
   type: 'line',
-  data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    datasets: [{
-      label: "Earnings",
-      lineTension: 0.3,
-      backgroundColor: "rgba(78, 115, 223, 0.05)",
-      borderColor: "rgba(78, 115, 223, 1)",
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointBorderColor: "rgba(78, 115, 223, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-      pointHitRadius: 10,
-      pointBorderWidth: 2,
-      data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
-    }],
-  },
+  data: chartData,
   options: {
     maintainAspectRatio: false,
     layout: {
@@ -78,7 +91,7 @@ var myLineChart = new Chart(ctx, {
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return '$' + number_format(value);
+            return number_format(value)+'명';
           }
         },
         gridLines: {
@@ -110,9 +123,10 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel +' : '+ number_format(tooltipItem.yLabel) + '명';
         }
       }
     }
   }
 });
+

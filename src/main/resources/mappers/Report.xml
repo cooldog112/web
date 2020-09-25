@@ -23,8 +23,11 @@
     </select>
 
     <select id="findAll" resultType="HashMap">
-        select p.id, user_id as user_id, category, account, name, title, content, views, likes, p.created, p.updated
+        select r.id as id, user_id as userId, account, testRoomNum, applicantNum, error, position, name, content, r.created, r.updated
         from report r left join user u on r.user_id = u.id
-        order by p.id desc
+        where r.id in (select max(id)
+                        from report
+                        group by user_id)
+        order by user_id
     </select>
 </mapper>

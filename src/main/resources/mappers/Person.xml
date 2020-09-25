@@ -35,8 +35,11 @@
     </select>
 
     <select id="findAll" resultType="HashMap">
-        select p.id, user_id as user_id, category, account, name, title, content, views, likes, p.created, p.updated
+        select p.id as id, user_id as userId, u.account as account, u.testRoomNum as testRoomNum, u.applicantNum as applicantNum, period, applicant, candidate, absentee, p.created as created, p.updated as created
         from person p left join user u on p.user_id = u.id
-        order by p.id desc
+        where p.id in (select max(id)
+                    from person
+                    group by period, user_id)
+        order by user_id, period
     </select>
 </mapper>

@@ -31,12 +31,19 @@ public class UserController {
         User dbUser = userService.login(user);
         if(dbUser == null){
             return null;
-
         }else{
             session.setAttribute("ID", dbUser);
             return dbUser;
         }
+    }
+    @GetMapping(value="/session")
+    public User session(HttpSession session){
+        return (User)session.getAttribute("ID");
+    }
 
+    @GetMapping(value="/logout")
+    public void logout(HttpSession session){
+        session.removeAttribute("ID");
     }
 
 
