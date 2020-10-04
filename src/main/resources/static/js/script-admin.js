@@ -1,3 +1,8 @@
+function openInsertPost(){
+    $('#container-2').show(500);
+        return;
+}
+
 function openLoginDialog() {
     if(user==null){
         $('#container-1').show(500);
@@ -6,6 +11,9 @@ function openLoginDialog() {
 }
 function closeLoginDialog() {
     $('#container-1').hide(500);
+}
+function closeInsertPost(){
+    $('#container-2').hide(500);
 }
 function openAdminMenu(num){
     $('#adminMenu1').hide();
@@ -184,5 +192,23 @@ async function addTotalLine(response){
           <td></td>
         </tr>
     `);
+}
+async function addPost(){
+    try {
+        let file = $('#customFile')[0].files[0];
+        let formData = new FormData();
+        formData.append("srcFile", file);
+
+
+        let response = await $.ajax({
+            type: 'POST',
+            url:'/attachment',
+            data:formData,
+            contentType:false,
+            processData:false
+        });
+    } catch (error) {
+        console.log(JSON.stringify(error));
+    }
 }
 adminSessionCheck();
