@@ -24,9 +24,9 @@ public class AttachmentController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/api/attachment")
+    @PostMapping("/attachment")
     public AttachmentProtocol upload(@RequestPart MultipartFile srcFile) {
-        String destFilename = "E:/Source/IdeaProjects/dgsw_board/backend/upload/"
+        String destFilename = "C://workspace/web-master/upload/"
                 + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd/"))
                 + UUID.randomUUID().toString() + "_" + srcFile.getOriginalFilename();
         try {
@@ -38,7 +38,7 @@ public class AttachmentController {
             return null;
         }
     }
-    @GetMapping("/api/attachment/{id}")
+    @GetMapping("/attachment/{id}")
     public void downloadUser(@PathVariable Long id, HttpServletRequest req, HttpServletResponse res) {
         String filePath = null;
         String fileName = null;
@@ -46,8 +46,8 @@ public class AttachmentController {
         try {
             User user = userService.findById(id);
             System.out.println(user);
-            filePath = user.getStoredPath();
-            fileName = user.getOriginalName();
+//            filePath = user.getStoredPath();
+//            fileName = user.getOriginalName();
 
             if (filePath == null || fileName == null) return;;
 
