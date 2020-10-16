@@ -67,6 +67,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" type="button" onclick="openAdminMenu(1)">문답지 이상 유무 현황</a>
             <a class="collapse-item" type="button" onclick="openAdminMenu(2)">시험장 보고 현황</a>
+            <a class="collapse-item" type="button" onclick="openAdminMenu(6)">별도시험장 현황</a>
             <a class="collapse-item" type="button" onclick="openAdminMenu(3)">대구 현황 종합</a>
             <a class="collapse-item" type="button" onclick="openAdminMenu(4)">대구 현황 종합 차트</a>
             <a class="collapse-item" type="button" onclick="openAdminMenu(5)">자료실</a>
@@ -279,13 +280,45 @@
                         <th width="20%">비고</th>
                       </tr>
                     </thead>
-                    <tbody id="func4Table">
+                    <tbody id="func5Table">
                       <tr>
                         <td>1</td>
                         <td>제출파일</td>
                         <td>마호돌</td>
                         <td></td>
                       </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="adminMenu6" style="display:none;">
+            <div class="card shadow mb-4">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable6" width="100%" cellspacing="0" align="center">
+                    <thead>
+                    <tr>
+                      <th rowspan="2" align="center">번호</th>
+                      <th rowspan="2" align="center">시험장</th>
+                      <th rowspan="2" align="center">시험실</th>
+                      <th rowspan="2" align="center">전체지원자</th>
+                      <th align="center">1교시</th>
+                      <th align="center">2교시</th>
+                      <th align="center">3교시</th>
+                      <th align="center">4교시</th>
+                      <th align="center">5교시</th>
+                    </tr>
+                    <tr>
+                      <th>별도시험실 응시자</th>
+                      <th>별도시험실 응시자</th>
+                      <th>별도시험실 응시자</th>
+                      <th>별도시험실 응시자</th>
+                      <th>별도시험실 응시자</th>
+                    </tr>
+                    </thead>
+                    <tbody id="func6Table">
                     </tbody>
                   </table>
                 </div>
@@ -379,9 +412,8 @@
             </div>
             <div class="card-body">
               <div class="row">
-
 <!--                  <h1 class="h6 font-weight-bold text-primary">제목</h1>-->
-                <label class="col-sm-2 col-form-label"><strong>제목</strong></label>
+                <label class="col-sm-2 col-form-label text-primary"><strong>제목</strong></label>
 
                 <div class="col-lg-10">
                   <input type="text" class="form-control form-control-user" id="postTitle" placeholder="제목">
@@ -389,7 +421,7 @@
               </div>
               <br>
               <div class="form-group row">
-                <label for="inputFile" class="col-sm-2 col-form-label"><strong>첨부 파일</strong></label>
+                <label for="inputFile" class="col-sm-2 col-form-label text-primary"><strong>첨부 파일</strong></label>
                 <div class="col-lg-10">
                   <div class="custom-file" id="inputFile">
                     <input name="file" type="file" class="custom-file-input" id="customFile">

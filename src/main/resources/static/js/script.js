@@ -24,9 +24,21 @@ function openPersonDialog() {
     }
     $('#container-3').show(500);
 }
+
 function closePersonDialog() {
     $('#container-3').hide(500);
 }
+function openSeparateDialog() {
+    if (user == null) {
+        openLoginDialog();
+        return;
+    }
+    $('#container-4').show(500);
+}
+function closeSeparateDialog() {
+    $('#container-4').hide(500);
+}
+
 
 let storedPath = null;
 let originalName = null;
@@ -112,28 +124,64 @@ async function getPerson(userId){
         data: JSON.stringify(person)
     });
     console.log(JSON.stringify(response));
+   for(let i=0;i<5;i++){
+        if(response[i].period == 1){
+            $('#periodApplicant1').html(`지원자 : ${response[i].applicant}명`);
+            $('#periodAbsentee1').html(`결시자 : ${response[i].absentee}명`);
+            $('#periodCandidate1').html(`응시자 : ${response[i].candidate}명`);
+        }else if(response[i].period == 2){
+            $('#periodApplicant2').html(`지원자 : ${response[i].applicant}명`);
+            $('#periodAbsentee2').html(`결시자 : ${response[i].absentee}명`);
+            $('#periodCandidate2').html(`응시자 : ${response[i].candidate}명`);
+        }else if(response[i].period == 3){
+            $('#periodApplicant3').html(`지원자 : ${response[i].applicant}명`);
+            $('#periodAbsentee3').html(`결시자 : ${response[i].absentee}명`);
+            $('#periodCandidate3').html(`응시자 : ${response[i].candidate}명`);
+        }else if(response[i].period == 4){
+            $('#periodApplicant4').html(`지원자 : ${response[i].applicant}명`);
+            $('#periodAbsentee4').html(`결시자 : ${response[i].absentee}명`);
+            $('#periodCandidate4').html(`응시자 : ${response[i].candidate}명`);
+        }else if(response[i].period == 5){
+            $('#periodApplicant5').html(`지원자 : ${response[i].applicant}명`);
+            $('#periodAbsentee5').html(`결시자 : ${response[i].absentee}명`);
+            $('#periodCandidate5').html(`응시자 : ${response[i].candidate}명`);
+        }
+    }
 
-    $('#periodApplicant1').html(`지원자:${response[0].applicant}명`);
-    $('#periodAbsentee1').html(`결시자:${response[0].absentee}명`);
-    $('#periodCandidate1').html(`응시자:${response[0].candidate}명`);
 
-    $('#periodApplicant2').html(`지원자:${response[1].applicant}명`);
-    $('#periodAbsentee2').html(`결시자:${response[1].absentee}명`);
-    $('#periodCandidate2').html(`응시자:${response[1].candidate}명`);
-
-    $('#periodApplicant3').html(`지원자:${response[2].applicant}명`);
-    $('#periodAbsentee3').html(`결시자:${response[2].absentee}명`);
-    $('#periodCandidate3').html(`응시자:${response[2].candidate}명`);
-
-    $('#periodApplicant4').html(`지원자:${response[3].applicant}명`);
-    $('#periodAbsentee4').html(`결시자:${response[3].absentee}명`);
-    $('#periodCandidate4').html(`응시자:${response[3].candidate}명`);
-
-    $('#periodApplicant5').html(`지원자:${response[4].applicant}명`);
-    $('#periodAbsentee5').html(`결시자:${response[4].absentee}명`);
-    $('#periodCandidate5').html(`응시자:${response[4].candidate}명`);
 
 }
+
+async function getSeparate(userId){
+
+    let person = {
+        userId: userId,
+    };
+
+    console.log(JSON.stringify(person));
+
+    let response = await $.ajax({
+        type: 'post',
+        url: '/separate/userId',
+        contentType: 'application/json',
+        data: JSON.stringify(person)
+    });
+    console.log(JSON.stringify(response));
+    for(let i=0;i<5;i++){
+        if(response[i].period == 1){
+            $('#separate1').html(`지원자 : ${response[i].applicant}명`);
+        }else if(response[i].period == 2){
+            $('#separate2').html(`지원자 : ${response[i].applicant}명`);
+        }else if(response[i].period == 3){
+            $('#separate3').html(`지원자 : ${response[i].applicant}명`);
+        }else if(response[i].period == 4){
+            $('#separate4').html(`지원자 : ${response[i].applicant}명`);
+        }else if(response[i].period == 5){
+            $('#separate5').html(`지원자 : ${response[i].applicant}명`);
+        }
+    }
+}
+
 
 async function logout(){
     try {
@@ -172,24 +220,93 @@ async function sessionCheck(){
     }
 }
 
+async function addSeparate(){
+    try {
+
+        var radio = document.getElementsByName("radioPeriod2");
+        var i;
+        var period;
+        period = 0;
+        for(i=0;i<radio.length;i++){
+            if(radio[i].checked == true){
+                period = i+1;
+            }
+        }
+        if(period==0){
+            alert("교시가 입력되지 않았습니다.");
+            return;
+        }
+        if($('#separate').val()==""){
+            alert("별도시험장 응시자가 입력되지 않았습니다.");
+            return;
+        }
+
+        let separate = {
+            userId: user.id,
+            period: period,
+            applicant:$('#separate').val()
+        };
+        console.log(JSON.stringify(separate));
+
+        let response = await $.ajax({
+            type: 'post',
+            url: '/separate/add',
+            contentType: 'application/json',
+            data: JSON.stringify(separate)
+        });
+
+        if(response == 1){
+            alert("정상 처리되었습니다.");
+            getSeparate(separate.userId);
+            closeSeparateDialog();
+        }else{
+            alert("오류 발생");
+        }
+
+    } catch (error) {
+        console.log(JSON.stringify(error));
+    }
+}
 
 async function addPerson() {
     try {
         var radio = document.getElementsByName("radioPeriod");
         var i;
         var period;
+        period = 0;
         for(i=0;i<radio.length;i++){
             if(radio[i].checked == true){
                 period = i+1;
             }
         }
+        if(period==0){
+            alert("교시가 입력되지 않았습니다.");
+            return;
+        }else if($('#applicant').val()==""){
+            alert("지원자가 입력되지 않았습니다.");
+            return;
+        }else if($('#absentee').val()==""){
+            alert("결시자가 입력되지 않았습니다.");
+            return;
+        }else if($('#candidate').val()==""){
+            alert("응시자가 입력되지 않았습니다.");
+            return;
+        }
+
+
         let person = {
             userId: user.id,
             period: period,
             applicant:$('#applicant').val(),
             absentee:$('#absentee').val(),
-            candidate: $('#candidate').val(),
+            candidate: $('#candidate').val()
         };
+
+        person
+        if(parseInt(person.applicant) != parseInt(person.absentee) + parseInt(person.candidate)){
+            alert("값이 일치하지 않습니다.");
+            return;
+        }
 
         console.log(JSON.stringify(person));
 
@@ -370,6 +487,7 @@ async function login() {
             closeLoginDialog();
             getUser(data.id);
             getPerson(data.id);
+            getSeparate(data.id);
 
 
         },

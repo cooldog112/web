@@ -27,6 +27,19 @@ img {
     width: auto;
     height: auto;
 }
+#post-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000aa;
+}
+
+
 #login-container {
     display: flex;
     justify-content: center;
@@ -44,6 +57,12 @@ img {
     position: relative;
     width: 300px;
 }
+.post-dialog{
+    text-align: center;
+    background-color: #FFFFFF;
+    position: relative;
+    width: 800px;
+}
 #comment-container {
     display: flex;
     justify-content: center;
@@ -56,6 +75,17 @@ img {
     background-color: #000000aa;
 }
 #person-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000aa;
+}
+#separate-container {
     display: flex;
     justify-content: center;
     align-items: center;

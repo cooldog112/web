@@ -21,6 +21,7 @@ function openAdminMenu(num){
     $('#adminMenu3').hide();
     $('#adminMenu4').hide();
     $('#adminMenu5').hide();
+    $('#adminMenu6').hide();
     if(num == 1){
         $('#title').html(`<h1 class="h3 mb-0 text-gray-800">문답지 이상 유무 현황</h1>`);
         getReportList();
@@ -39,7 +40,11 @@ function openAdminMenu(num){
     }else if(num==5){
          $('#title').html(`<h1 class="h3 mb-0 text-gray-800">자료실</h1>`);
          $('#adminMenu5').show();
-     }
+    }else if(num==6){
+        $('#title').html(`<h1 class="h3 mb-0 text-gray-800">별도 시험장 보고 현황</h1>`);
+        getSeparateList();
+        $('#adminMenu6').show();
+    }
 }
 
 let user = null;
@@ -110,6 +115,43 @@ async function getReportList(){
         $('#func1Table').html(JSON.stringify(error));
     }
 }
+async function getSeparateList(){
+    try {
+        let response = await $.get('/separate');
+        $('#func6Table').html(``);
+
+        let temp = 0;
+        console.log(JSON.stringify(response))
+        for (let i = 0; i < response.length; i++) {
+            if(response[i].userId != temp){
+                addSeparateLine(response[i]);
+                temp = response[i].userId;
+            }else{
+                addSeparateCols(response[i]);
+            }
+        }
+        $('#func6Table').append(`</tr>`);
+    } catch (error) {
+        $('#func6Table').html(JSON.stringify(error));
+    }
+}
+async function addSeparateLine(response){
+    $('#func6Table').append(`
+        <tr id="line${response.userId}">
+          <td>${response.userId}</td>
+          <td>${response.account}</td>
+          <td>${response.testRoomNum}개</td>
+          <td>${response.applicantNum}명</td>
+          <td>${response.applicant}명</td>
+        </tr>
+    `);
+}
+async function addSeparateCols(response){
+    let line = $(`#line${response.userId}`);
+        line.append(`
+          <td>${response.applicant}명</td>
+        `);
+}
 async function addReportLine(response){
     $('#func1Table').append(`
         <tr id="line${response.id}">
@@ -120,7 +162,7 @@ async function addReportLine(response){
           <td>${response.error}</td>
           <td>${response.position}</td>
           <td>${response.name}</td>
-          <td>${response.updated}</td>
+          <td>${response.updated.substring(0,19)}</td>
           <td>${response.content}</td>
         </tr>
     `);
@@ -187,8 +229,8 @@ async function addTotalLine(response){
           <td>${response.applicant}개</td>
           <td>${response.candidate}명</td>
           <td>${response.absentee}명</td>
-          <td>${response.candidate / response.applicant * 100}%</td>
-          <td>${response.absentee / response.applicant * 100}%</td>
+          <td>${(response.candidate / response.applicant * 100).toFixed(2)}%</td>
+          <td>${(response.absentee / response.applicant * 100).toFixed(2)}%</td>
           <td></td>
         </tr>
     `);

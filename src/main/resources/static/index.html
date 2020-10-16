@@ -68,6 +68,7 @@
             <h6 class="collapse-header">MENU</h6>
             <a type="button" class="collapse-item" onclick="openReportDialog()">문답지 이상유무 보고</a>
             <a type="button" class="collapse-item" onclick="openPersonDialog()">시험장 응시자 현황 보고</a>
+            <a type="button" class="collapse-item" onclick="openSeparateDialog()">별도시험장 응시자 현황 보고</a>
           </div>
         </div>
       </li>
@@ -235,10 +236,8 @@
           </div>
 
           <!-- Content Row -->
-
+          <div class="h3 mb-0 text-gray-800">일반시험장</div>
           <div class="row">
-
-
             <div class="col-xl-2 col-lg-7">
               <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -305,6 +304,70 @@
                   <div class="text-gray-900 text-lg" id="periodApplicant5">지원자 : </div>
                   <div class="text-gray-900 text-lg" id="periodAbsentee5">결시자 : </div>
                   <div class="text-gray-900 text-lg" id="periodCandidate5">응시자 : </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="h3 mb-0 text-gray-800">별도시험장</div>
+
+          <div class="row">
+            <div class="col-xl-2 col-lg-7">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary text-lg">1교시</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="text-gray-900 text-lg" id="separate1">지원자 : </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-2 col-lg-7">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary text-lg">2교시</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="text-gray-900 text-lg" id="separate2">지원자 : </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-2 col-lg-7">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary text-lg">3교시</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="text-gray-900 text-lg" id="separate3">지원자 : </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-2 col-lg-7">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary text-lg">4교시</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="text-gray-900 text-lg" id="separate4">지원자 : </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-2 col-lg-7">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary text-lg">5교시</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="text-gray-900 text-lg" id="separate5">지원자 : </div>
                 </div>
               </div>
             </div>
@@ -482,7 +545,7 @@
                   <h1 class="h6 font-weight-bold text-primary">지원자 수</h1>
                 </div>
                 <div class="col-lg-9">
-                  <input type="text" class="form-control form-control-user" id="applicant" placeholder="지원자 수">
+                  <input type="text" autocomplete="off" class="form-control form-control-user" id="applicant" placeholder="지원자 수">
                 </div>
               </div>
               <br>
@@ -491,7 +554,7 @@
                   <h1 class="h6 font-weight-bold text-primary">결시자 수</h1>
                 </div>
                 <div class="col-lg-9">
-                  <input type="text" class="form-control form-control-user" id="absentee" placeholder="결시자 수">
+                  <input type="text" autocomplete="off" class="form-control form-control-user" id="absentee" placeholder="결시자 수">
                 </div>
               </div>
               <br>
@@ -500,7 +563,7 @@
                   <h1 class="h6 font-weight-bold text-primary">응시자 수</h1>
                 </div>
                 <div class="col-lg-9">
-                  <input type="text" class="form-control form-control-user" id="candidate" placeholder="응시자 수">
+                  <input type="text" autocomplete="off" class="form-control form-control-user" id="candidate" placeholder="응시자 수">
                 </div>
               </div>
 
@@ -518,6 +581,59 @@
             <span class="text text-gray-100">확인</span>
           </a>
           <a type="button" class="btn btn-danger btn-icon-split" onclick="closePersonDialog()">
+            <span class="text text-gray-100">취소</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="container-4" style="display: none;">
+    <div id="separate-container">
+      <div class="comment-dialog">
+        <div style="margin: 30px 0 30px 0">
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h1 class="h3 mb-0 font-weight-bold text-primary">시험장 응시자 현황보고</h1>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-3">
+                  <h1 class="h6 font-weight-bold text-primary">교 시</h1>
+                </div>
+                <div class="col-lg-9">
+                  <div class="" id="radioPeriod2">
+                    <input class="col-1" type="radio" name="radioPeriod2" value='1'/>1교시
+                    <input class="col-1" type="radio" name="radioPeriod2" value='2'/>2교시
+                    <input class="col-1" type="radio" name="radioPeriod2" value='3'/>3교시
+                    <input class="col-1" type="radio" name="radioPeriod2" value='4'/>4교시
+                    <input class="col-1" type="radio" name="radioPeriod2" value='5'/>5교시
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-lg-3">
+                  <h1 class="h6 font-weight-bold text-primary">지원자 수</h1>
+                </div>
+                <div class="col-lg-9">
+                  <input type="text" autocomplete="off" class="form-control form-control-user" id="separate" placeholder="지원자 수">
+                </div>
+              </div>
+              <br>
+              </div>
+          </div>
+
+        </div>
+        <br>
+        <!--        <input type="file" id="upload-file">-->
+        <div style="margin: 30px 0">
+          <!--          <button onclick="addReport()">확인</button>-->
+          <!--          <button onclick="closeReportDialog()">취소</button>-->
+          <a class="btn btn-primary btn-icon-split" type="button" onclick="addSeparate()">
+            <span class="text text-gray-100">확인</span>
+          </a>
+          <a type="button" class="btn btn-danger btn-icon-split" onclick="closeSeparateDialog()">
             <span class="text text-gray-100">취소</span>
           </a>
         </div>

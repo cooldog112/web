@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dge.web.domain.SeparateMapper">
+    <insert id="add" parameterType="com.dge.web.domain.Separate">
+        insert into separate(user_id, period, applicant)
+        values(#{userId}, #{period}, #{applicant})
+        <selectKey keyProperty="id" resultType="Long">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+
+    <select id="get" parameterType="com.dge.web.domain.Separate" resultType="com.dge.web.domain.Separate">
+        select max(id), user_id, period, applicant, created, updated
+        from separate
+        where user_id=#{userId} and period=#{period}
+        order by id desc
+        limit 1
+    </select>
+
+    <select id="findById" parameterType="Long" resultType="com.dge.web.domain.Separate">
+        select id, user_id, period, applicant, created, updated
+        from separate
+        where id=#{id}
+    </select>
+
+    <select id="findByUserId" parameterType="Long" resultType="HashMap">
+        select id, user_id, period, applicant, created, updated
+        from separate
+        where id in (select max(id)
+                    from separate
+                    where user_id =  #{userId} group by period)
+        order by period
+
+    </select>
+
+    <select id="findAll" resultType="HashMap">
+        select p.id as id, user_id as userId, u.account as account, u.testRoomNum as testRoomNum, u.applicantNum as applicantNum, period, applicant, p.created as created, p.updated as created
+        from separate p left join user u on p.user_id = u.id
+        where p.id in (select max(id)
+                    from separate
+                    group by period, user_id)
+        order by user_id, period
+    </select>
+</mapper>
