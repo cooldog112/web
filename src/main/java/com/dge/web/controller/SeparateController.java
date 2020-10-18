@@ -27,10 +27,7 @@ public class SeparateController {
     public Separate findById(@Param("id") Long id) {
         return separateService.findById(id);
     }
-    @PostMapping(value = "/separate/userId")
-    public List<Separate> findByUserId(@RequestBody Separate separate) {
-        return separateService.findByUserId(separate.getUserId());
-    }
+
     @PostMapping(value = "/separate/add")
     public Long add(@RequestBody Separate separate) {
         Long n = separateService.add(separate);

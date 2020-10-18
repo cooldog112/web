@@ -28,6 +28,8 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok'
 
+
+
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
@@ -40,5 +42,12 @@ test {
 bootJar {
 	archiveBaseName = '-'
 	archiveFileName = '-.jar'
+	archiveVersion = '0.0.0'
+}
+
+apply plugin:'war'
+bootWar {
+	archiveBaseName = '-'
+	archiveFileName = '-.war'
 	archiveVersion = '0.0.0'
 }

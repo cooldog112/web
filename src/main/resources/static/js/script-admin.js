@@ -39,7 +39,9 @@ function openAdminMenu(num){
         $('#adminMenu4').show();
     }else if(num==5){
          $('#title').html(`<h1 class="h3 mb-0 text-gray-800">자료실</h1>`);
-         $('#adminMenu5').show();
+         var newwindow = '_blank';
+         var url = 'http://cafe.edunavi.kr/2020CSATTF'
+         window.open(url, newwindow);
     }else if(num==6){
         $('#title').html(`<h1 class="h3 mb-0 text-gray-800">별도 시험장 보고 현황</h1>`);
         getSeparateList();

@@ -56,7 +56,7 @@ create table separate (
   id bigint primary key auto_increment,
   user_id bigint,
   period integer,
-  candidate integer,
+  applicant integer,
   created datetime default current_timestamp,
   updated datetime default current_timestamp on update current_timestamp
 ) engine=InnodB default charset=utf8mb4;

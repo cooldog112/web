@@ -38,7 +38,11 @@ function openSeparateDialog() {
 function closeSeparateDialog() {
     $('#container-4').hide(500);
 }
-
+function openData(){
+    var newwindow = '_blank';
+     var url = 'http://cafe.edunavi.kr/2020CSATTF'
+     window.open(url, newwindow);
+}
 
 let storedPath = null;
 let originalName = null;
