@@ -1,7 +1,5 @@
 package com.dge.web.controller;
 
-
-
 import com.dge.web.domain.Separate;
 
 import com.dge.web.service.SeparateService;
@@ -23,9 +21,15 @@ public class SeparateController {
     public List findAll() {
         return separateService.findAll();
     }
+
     @GetMapping(value = "/separate/id")
     public Separate findById(@Param("id") Long id) {
         return separateService.findById(id);
+    }
+
+    @PostMapping(value = "/separate/userId")
+    public List<Separate> findByUserId(@RequestBody Separate separate) {
+        return separateService.findByUserId(separate.getUserId());
     }
 
     @PostMapping(value = "/separate/add")
