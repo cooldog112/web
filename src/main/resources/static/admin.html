@@ -105,17 +105,10 @@
           </button>
 
           <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-
+          <br>
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800"><br>[2021 대구광역시 수능시험장 현황보고 시스템]</h1>
+          </div>
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
@@ -166,9 +159,6 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4" id="title">
-            <h1 class="h3 mb-0 text-gray-800">대구광역시 수능시험장 현황 보고 (관리자)</h1>
-          </div>
           <div id="adminMenu1" style="display:none;">
             <div class="card shadow mb-4">
               <div class="card-body">
@@ -196,39 +186,44 @@
             </div>
 
           </div>
-          <div id="adminMenu2" style="">
+          <div id="adminMenu2" style="display:none;">
             <div class="card shadow mb-4">
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0" align="center">
+                  <table class="table table-bordered" style="font-size:12px; text-align:center" id="dataTable2" width="100%" cellspacing="0" align="center">
                     <thead>
                     <tr>
-                      <th rowspan="2" align="center">번호</th>
+                      <th rowspan="2" align="center">번<br>호</th>
                       <th rowspan="2" align="center">시험장</th>
-                      <th rowspan="2" align="center">시험실</th>
-                      <th rowspan="2" align="center">전체지원자</th>
-                      <th colspan="3" align="center">1교시</th>
-                      <th colspan="3" align="center">2교시</th>
-                      <th colspan="3" align="center">3교시</th>
-                      <th colspan="3" align="center">4교시</th>
-                      <th colspan="3" align="center">5교시</th>
+                      <th rowspan="2" align="center">시<br>험<br>실</th>
+                      <th rowspan="2" align="center">전체<br>지원자</th>
+                      <th colspan="4" >1교시</th>
+                      <th colspan="4" >2교시</th>
+                      <th colspan="4" >3교시</th>
+                      <th colspan="4" >4교시</th>
+                      <th colspan="4" >5교시</th>
                     </tr>
-                    <tr>
+                    <tr style="font-size:10px">
                       <th>지원자</th>
                       <th>결시자</th>
                       <th>응시자</th>
+                      <th>결시율</th>
                       <th>지원자</th>
                       <th>결시자</th>
                       <th>응시자</th>
+                      <th>결시율</th>
                       <th>지원자</th>
                       <th>결시자</th>
                       <th>응시자</th>
+                      <th>결시율</th>
                       <th>지원자</th>
                       <th>결시자</th>
                       <th>응시자</th>
+                      <th>결시율</th>
                       <th>지원자</th>
                       <th>결시자</th>
                       <th>응시자</th>
+                      <th>결시율</th>
                     </tr>
                     </thead>
                     <tbody id="func2Table">
@@ -304,7 +299,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; 매천고등학교 마호돌</span>
+            <span>[2021학년도 대학수학능력시험 대구시험지구 관리 본부]</span>
           </div>
         </div>
       </footer>

@@ -141,16 +141,16 @@ async function addSeparateLine(response){
         <tr id="line${response.userId}">
           <td>${response.userId}</td>
           <td>${response.account}</td>
-          <td>${response.testRoomNum}개</td>
-          <td>${response.applicantNum}명</td>
-          <td>${response.applicant}명</td>
+          <td>${response.testRoomNum}</td>
+          <td>${response.applicantNum}</td>
+          <td>${response.applicant}</td>
         </tr>
     `);
 }
 async function addSeparateCols(response){
     let line = $(`#line${response.userId}`);
         line.append(`
-          <td>${response.applicant}명</td>
+          <td>${response.applicant}</td>
         `);
 }
 async function addReportLine(response){
@@ -192,9 +192,10 @@ async function getPersonList(){
 async function addPersonCols(response){
     let line = $(`#line${response.userId}`);
     line.append(`
-      <td>${response.applicant}명</td>
-      <td>${response.absentee}명</td>
-      <td>${response.candidate}명</td>
+      <td>${response.applicant}</td>
+      <td>${response.absentee}</td>
+      <td>${response.candidate}</td>
+      <td style="font-size:10px; text-align:center">${(response.absentee / response.applicant * 100).toFixed(2)}%</td>
     `);
 }
 async function addPersonLine(response){
@@ -204,9 +205,10 @@ async function addPersonLine(response){
           <td>${response.account}</td>
           <td>${response.testRoomNum}개</td>
           <td>${response.applicantNum}명</td>
-          <td>${response.applicant}명</td>
-          <td>${response.absentee}명</td>
-          <td>${response.candidate}명</td>
+          <td>${response.applicant}</td>
+          <td>${response.absentee}</td>
+          <td>${response.candidate}</td>
+          <td style="font-size:10px; text-align:center">${(response.absentee / response.applicant * 100).toFixed(2)}%</td>
         </tr>
     `);
 }
@@ -227,9 +229,9 @@ async function addTotalLine(response){
         <tr>
           <td>${response.year}</td>
           <td>${response.period}</td>
-          <td>${response.applicant}개</td>
-          <td>${response.candidate}명</td>
-          <td>${response.absentee}명</td>
+          <td>${response.applicant}</td>
+          <td>${response.candidate}</td>
+          <td>${response.absentee}</td>
           <td>${(response.candidate / response.applicant * 100).toFixed(2)}%</td>
           <td>${(response.absentee / response.applicant * 100).toFixed(2)}%</td>
           <td></td>
@@ -255,3 +257,6 @@ async function addPost(){
     }
 }
 adminSessionCheck();
+$('#title').html(`<h1 class="h3 mb-0 text-gray-800">시험장 보고 현황</h1>`);
+getPersonList();
+$('#adminMenu2').show();
