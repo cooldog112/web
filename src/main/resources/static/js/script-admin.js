@@ -2,7 +2,6 @@ function openInsertPost(){
     $('#container-2').show(500);
         return;
 }
-
 function openLoginDialog() {
     if(user==null){
         $('#container-1').show(500);
