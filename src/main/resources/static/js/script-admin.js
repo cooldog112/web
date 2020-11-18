@@ -15,6 +15,7 @@ function closeInsertPost(){
     $('#container-2').hide(500);
 }
 function openAdminMenu(num){
+    adminSessionCheck();
     $('#adminMenu1').hide();
     $('#adminMenu2').hide();
     $('#adminMenu3').hide();
@@ -22,27 +23,20 @@ function openAdminMenu(num){
     $('#adminMenu5').hide();
     $('#adminMenu6').hide();
     if(num == 1){
-        $('#title').html(`<h1 class="h3 mb-0 text-gray-800">문답지 이상 유무 현황</h1>`);
         getReportList();
         $('#adminMenu1').show();
     }else if(num==2){
-        $('#title').html(`<h1 class="h3 mb-0 text-gray-800">시험장 보고 현황</h1>`);
-        getPersonList();
-        $('#adminMenu2').show();
+        location.reload();
     }else if(num==3){
-        $('#title').html(`<h1 class="h3 mb-0 text-gray-800">대구 현황 종합</h1>`);
         getTotalList();
         $('#adminMenu3').show();
     }else if(num==4){
-        $('#title').html(`<h1 class="h3 mb-0 text-gray-800">대구 현황 종합 차트</h1>`);
         $('#adminMenu4').show();
     }else if(num==5){
-         $('#title').html(`<h1 class="h3 mb-0 text-gray-800">자료실</h1>`);
          var newwindow = '_blank';
          var url = 'http://cafe.edunavi.kr/2020CSATTF'
          window.open(url, newwindow);
     }else if(num==6){
-        $('#title').html(`<h1 class="h3 mb-0 text-gray-800">별도 시험장 보고 현황</h1>`);
         getSeparateList();
         $('#adminMenu6').show();
     }
@@ -138,7 +132,7 @@ async function getSeparateList(){
 }
 async function addSeparateLine(response){
     $('#func6Table').append(`
-        <tr id="line${response.userId}">
+        <tr id="aline${response.userId}">
           <td>${response.userId}</td>
           <td>${response.account}</td>
           <td>${response.testRoomNum}</td>
@@ -148,10 +142,11 @@ async function addSeparateLine(response){
     `);
 }
 async function addSeparateCols(response){
-    let line = $(`#line${response.userId}`);
-        line.append(`
-          <td>${response.applicant}</td>
-        `);
+    let line2 = $(`#aline${response.userId}`);
+    line2.append(`
+      <td>${response.applicant}</td>
+    `);
+
 }
 async function addReportLine(response){
     $('#func1Table').append(`
@@ -171,7 +166,7 @@ async function addReportLine(response){
 
 async function getPersonList(){
     try {
-        let response = await $.get('/person');
+        var response = await $.get('/person');
         $('#func2Table').html(``);
         console.log(JSON.stringify(response));
         let temp = 0;
@@ -195,7 +190,7 @@ async function addPersonCols(response){
       <td>${response.applicant}</td>
       <td>${response.absentee}</td>
       <td>${response.candidate}</td>
-      <td style="font-size:10px; text-align:center">${(response.absentee / response.applicant * 100).toFixed(2)}%</td>
+      <td>${(response.absentee / response.applicant * 100).toFixed(2)}</td>
     `);
 }
 async function addPersonLine(response){
@@ -208,7 +203,7 @@ async function addPersonLine(response){
           <td>${response.applicant}</td>
           <td>${response.absentee}</td>
           <td>${response.candidate}</td>
-          <td style="font-size:10px; text-align:center">${(response.absentee / response.applicant * 100).toFixed(2)}%</td>
+          <td>${(response.absentee / response.applicant * 100).toFixed(2)}</td>
         </tr>
     `);
 }
@@ -257,6 +252,5 @@ async function addPost(){
     }
 }
 adminSessionCheck();
-$('#title').html(`<h1 class="h3 mb-0 text-gray-800">시험장 보고 현황</h1>`);
 getPersonList();
 $('#adminMenu2').show();

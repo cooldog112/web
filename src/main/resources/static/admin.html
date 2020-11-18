@@ -58,22 +58,22 @@
       <hr class="sidebar-divider">
 
       <li class="nav-item active">
-        <a class="nav-link" type="button" onclick="openAdminMenu(1)"><i class="fas fa-fw fa-table"></i> 문답지 이상 유무 현황</a>
+        <a class="nav-link" style="font-size:14px" type="button" onclick="openAdminMenu(1)"><i class="fas fa-fw fa-table"></i> 문답지 이상 유무 현황</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" type="button" onclick="openAdminMenu(2)"><i class="fas fa-fw fa-table"></i> 시험장 보고 현황</a>
+        <a class="nav-link" style="font-size:14px" type="button" onclick="openAdminMenu(2)"><i class="fas fa-fw fa-table"></i> 시험장 보고 현황</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" type="button" onclick="openAdminMenu(6)"><i class="fas fa-fw fa-table"></i> 별도시험장 현황</a>
+        <a class="nav-link" style="font-size:14px" type="button" onclick="openAdminMenu(6)"><i class="fas fa-fw fa-table"></i> 별도시험실 현황</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" type="button" onclick="openAdminMenu(3)"><i class="fas fa-fw fa-table"></i> 대구 현황 종합</a>
+        <a class="nav-link" style="font-size:14px" type="button" onclick="openAdminMenu(3)"><i class="fas fa-fw fa-table"></i> 대구 현황 종합</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" type="button" onclick="openAdminMenu(4)"><i class="fas fa-fw fa-chart-area"></i> 대구 현황 종합 차트</a>
+        <a class="nav-link" style="font-size:14px" type="button" onclick="openAdminMenu(4)"><i class="fas fa-fw fa-chart-area"></i> 대구 현황 종합 차트</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" type="button" onclick="openAdminMenu(5)"><i class="fas fa-fw fa-folder"></i> 자료실</a>
+        <a class="nav-link" style="font-size:14px" type="button" onclick="openAdminMenu(5)"><i class="fas fa-fw fa-folder"></i> 자료실</a>
       </li>
 
 
@@ -157,13 +157,16 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
           <!-- Page Heading -->
+<!--          문답지 이상유무 현황-->
           <div id="adminMenu1" style="display:none;">
             <div class="card shadow mb-4">
               <div class="card-body">
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                  <h1 class="h3 mb-0 text-gray-800"><br>문답지 이상 유무 현황</h1>
+                </div>
                 <div class="table-responsive">
-                  <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                  <table class="table table-bordered" style="text-align:center" id="dataTable1" width="100%" cellspacing="0">
                     <thead>
                     <tr>
                       <th>시험장번호</th>
@@ -186,16 +189,20 @@
             </div>
 
           </div>
+<!--          시험장 보고 현황-->
           <div id="adminMenu2" style="display:none;">
             <div class="card shadow mb-4">
               <div class="card-body">
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                  <h1 class="h3 mb-0 text-gray-800"><br>시험장 보고 현황</h1>
+                </div>
                 <div class="table-responsive">
                   <table class="table table-bordered" style="font-size:12px; text-align:center" id="dataTable2" width="100%" cellspacing="0" align="center">
                     <thead>
                     <tr>
                       <th rowspan="2" align="center">번<br>호</th>
                       <th rowspan="2" align="center">시험장</th>
-                      <th rowspan="2" align="center">시<br>험<br>실</th>
+                      <th rowspan="2" align="center">시험실</th>
                       <th rowspan="2" align="center">전체<br>지원자</th>
                       <th colspan="4" >1교시</th>
                       <th colspan="4" >2교시</th>
@@ -233,11 +240,15 @@
               </div>
             </div>
           </div>
+<!--          대구 현황 종합-->
           <div id="adminMenu3" style="display:none;">
             <div class="card shadow mb-4">
               <div class="card-body">
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                  <h1 class="h3 mb-0 text-gray-800"><br>대구 현황 종합</h1>
+                </div>
                 <div class="table-responsive">
-                  <table class="table table-bordered" id="dataTable3" width="100%" cellspacing="0" align="center">
+                  <table class="table table-bordered" style="text-align:center" id="dataTable3" width="100%" cellspacing="0" align="center">
                     <thead>
                     <tr>
                       <th align="center">연도</th>
@@ -258,12 +269,17 @@
             </div>
 
           </div>
+<!--          대구 현황 종합 차트-->
           <div id="adminMenu4" style="display:none;">메뉴4</div>
+<!--          별도시험실 현황-->
           <div id="adminMenu6" style="display:none;">
             <div class="card shadow mb-4">
               <div class="card-body">
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                  <h1 class="h3 mb-0 text-gray-800"><br>별도시험실 현황</h1>
+                </div>
                 <div class="table-responsive">
-                  <table class="table table-bordered" id="dataTable6" width="100%" cellspacing="0" align="center">
+                  <table class="table table-bordered" style="text-align:center"id="dataTable6" width="100%" cellspacing="0" align="center">
                     <thead>
                     <tr>
                       <th rowspan="2" align="center">번호</th>
@@ -356,9 +372,6 @@
               <a class="btn btn-facebook btn-block" onclick="login()">
                 <span class="text text-gray-100">로그인</span>
               </a>
-              <a class="btn btn-google btn-block" onclick="closeLoginDialog()">
-                <span class="text text-gray-100">취소</span>
-              </a>
             </form>
             <hr>
           </div>
@@ -435,11 +448,11 @@
   <script src="js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
+<!--  <script src="vendor/chart.js/Chart.min.js"></script>-->
 
   <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
+<!--  <script src="js/demo/chart-area-demo.js"></script>-->
+<!--  <script src="js/demo/chart-pie-demo.js"></script>-->
 
   <script src="js/script-admin.js"></script>
 

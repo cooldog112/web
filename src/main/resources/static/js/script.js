@@ -8,6 +8,7 @@ function closeLoginDialog() {
     $('#container-1').hide(500);
 }
 function openReportDialog() {
+    sessionCheck();
     if (user == null) {
         openLoginDialog();
         return;
@@ -18,6 +19,7 @@ function closeReportDialog() {
     $('#container-2').hide(500);
 }
 function openPersonDialog() {
+    sessionCheck();
     if (user == null) {
         openLoginDialog();
         return;
@@ -29,6 +31,7 @@ function closePersonDialog() {
     $('#container-3').hide(500);
 }
 function openSeparateDialog() {
+    sessionCheck();
     if (user == null) {
         openLoginDialog();
         return;
@@ -484,15 +487,19 @@ async function login() {
         data: JSON.stringify(login),
         success: (data) => {
             user=data;
+            console.log(JSON.stringify(data));
+            if(data==""){
+                alert("로그인 실패");
+                location.reload();
+            }
             if(user.account == "관리자"){
                 location.href="/admin.html";
+            }else{
+                closeLoginDialog();
+                getUser(data.id);
+                getPerson(data.id);
+                getSeparate(data.id);
             }
-
-            closeLoginDialog();
-            getUser(data.id);
-            getPerson(data.id);
-            getSeparate(data.id);
-
 
         },
         error: (error) => {
