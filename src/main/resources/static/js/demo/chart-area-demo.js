@@ -43,15 +43,47 @@ async function getChartData(){
 const colors = ['red','yellow','blue','#c3e6cb','#dc3545'];
 
 var chartData = {
-        labels: ["2016", "2017", "2018", "2019", "2020"],
+        labels: ["2015","2016", "2017", "2018", "2019", "2020","2021"],
+
         datasets: [{
-          data: [27772, 30410, 30863, 31493, 33366],
-          label : "1교시",
-          backgroundColor : 'transparent',
-          borderColor:colors[0],
-          borderWidth:3,
-          pointBackgroundColor: colors[0]
-        }]
+            data: [92.9,93.41,92.21,91.54,91.46,90.95],
+            label : "1교시",
+            backgroundColor: 'transparent',
+            borderColor: colors[0],
+            borderWidth: 3,
+            pointBackgroundColor:colors[0]
+            }, {
+            data: [92.97,93.69,92.57,91.98,91.72,91.1],
+            label : "2교시",
+            backgroundColor: 'transparent',
+            borderColor: colors[1],
+            borderWidth: 3,
+            pointBackgroundColor:colors[1]
+            }, {
+            data: [92.11,92.22,91.62,90.83,90.47,89.83],
+            label : "3교시",
+            backgroundColor: 'transparent',
+            borderColor: colors[2],
+            borderWidth: 3,
+            pointBackgroundColor:colors[2]
+            }, {
+            data: [92.04,92.38,91.57,90.71,90.36,89.7],
+            label : "4교시",
+            backgroundColor: 'transparent',
+            borderColor: colors[3],
+            borderWidth: 3,
+            pointBackgroundColor:colors[3]
+            }, {
+            data: [71.31,74.38,78.26,73.39,70.22,72.77],
+            label : "5교시",
+            backgroundColor: 'transparent',
+            borderColor: colors[4],
+            borderWidth: 3,
+            pointBackgroundColor:colors[4]
+            }
+
+        ]
+
     }
 
 async function getChartData(){
@@ -91,7 +123,7 @@ var myLineChart = new Chart(ctx, {
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return number_format(value)+'명';
+            return number_format(value)+'%';
           }
         },
         gridLines: {
@@ -123,7 +155,8 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel +' : '+ number_format(tooltipItem.yLabel) + '명';
+//          return datasetLabel +' : '+ number_format(tooltipItem.yLabel) + '%';
+            return datasetLabel +' : '+ tooltipItem.yLabel + '%';
         }
       }
     }

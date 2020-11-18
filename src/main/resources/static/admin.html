@@ -270,7 +270,52 @@
 
           </div>
 <!--          대구 현황 종합 차트-->
-          <div id="adminMenu4" style="display:none;">메뉴4</div>
+          <div id="adminMenu4" style="display:none;">
+            <!-- Page Heading -->
+            <h1 class="h3 mb-2 text-gray-800">대구 현황 종합 차트 (미완성)</h1>
+            <!-- Content Row -->
+            <div class="row">
+              <div class="col-xl-8 col-lg-7">
+
+                <!-- Bar Chart -->
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">연도별 응시자 현황</h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart-bar">
+                      <canvas id="myBarChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Donut Chart -->
+              <div class="col-xl-4 col-lg-5">
+                <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">2021년 1교시 현황</h6>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                    <div class="chart-pie pt-4">
+                      <canvas id="myPieChart"></canvas>
+                    </div>
+                    <hr>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+          </div>
 <!--          별도시험실 현황-->
           <div id="adminMenu6" style="display:none;">
             <div class="card shadow mb-4">
@@ -448,11 +493,12 @@
   <script src="js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-<!--  <script src="vendor/chart.js/Chart.min.js"></script>-->
+  <script src="vendor/chart.js/Chart.min.js"></script>
 
   <!-- Page level custom scripts -->
 <!--  <script src="js/demo/chart-area-demo.js"></script>-->
-<!--  <script src="js/demo/chart-pie-demo.js"></script>-->
+  <script src="js/demo/chart-pie-demo.js"></script>
+  <script src="js/demo/chart-bar-demo.js"></script>
 
   <script src="js/script-admin.js"></script>
 
