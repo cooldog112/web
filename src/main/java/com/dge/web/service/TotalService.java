@@ -12,4 +12,5 @@ import java.util.List;
 public interface TotalService {
     List<Total> findAll();
     Total findByYear(int year);
+    List<Total> currentTotal();
 }

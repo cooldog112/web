@@ -25,4 +25,11 @@ public class TotalController {
         return totalService.findByYear(year);
     }
 
+    @GetMapping(value = "/currentTotal")
+    public List<Total> findCurrentTotal() {
+        return totalService.currentTotal();
+    }
+
+
+
 }

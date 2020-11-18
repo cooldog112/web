@@ -25,4 +25,9 @@ public class TotalServiceImpl implements TotalService {
     public Total findByYear(int year) {
         return totalMapper.findByYear(year);
     }
+
+    @Override
+    public List<Total> currentTotal() {
+        return totalMapper.currentTotal();
+    }
 }

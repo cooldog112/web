@@ -60,7 +60,7 @@ async function addComment() {
             originalName: originalName,
             storedPath: storedPath
         };
-        console.log(JSON.stringify(comment));
+
         let response = await $.ajax({
             type: 'post',
             url: '/comment/add',
@@ -70,7 +70,7 @@ async function addComment() {
         originalName = null;
         storedPath = null;
         $('#content').val('');
-        console.log(JSON.stringify(response));
+
         addCommentLine(response);
         closeCommentDialog();
     } catch (error) {
@@ -88,8 +88,6 @@ async function addReport() {
             error = "이상있음";
         }
 
-        alert(error);
-
         let report = {
             userId: user.id,
             position:$('#reportPosition').val(),
@@ -97,8 +95,14 @@ async function addReport() {
             error:error,
             content: $('#gita').val(),
         };
+        if(report.position == ""){
+            alert("보고자 직위가 누락되었습니다.");
+        }
+        if(report.name == ""){
+            alert("보고자 이름이 누락되었습니다.");
+        }
 
-        console.log(JSON.stringify(report));
+
 
         let response = await $.ajax({
             type: 'post',
@@ -107,7 +111,7 @@ async function addReport() {
             data: JSON.stringify(report)
         });
         if(response == 1){
-            alert("정상 처리되었습니다.");
+            alert(error + "으로 정상 처리되었습니다.");
             closeReportDialog();
         }else{
             alert("오류 발생");
@@ -122,7 +126,7 @@ async function getPerson(userId){
         userId: userId,
     };
 
-    console.log(JSON.stringify(person));
+
 
     let response = await $.ajax({
         type: 'post',
@@ -130,7 +134,7 @@ async function getPerson(userId){
         contentType: 'application/json',
         data: JSON.stringify(person)
     });
-    console.log(JSON.stringify(response));
+
    for(let i=0;i<5;i++){
         if(response[i].period == 1){
             $('#periodApplicant1').html(`지원자 : ${response[i].applicant}명`);
@@ -165,7 +169,7 @@ async function getSeparate(userId){
         userId: userId,
     };
 
-    console.log(JSON.stringify(person));
+
 
     let response = await $.ajax({
         type: 'post',
@@ -173,7 +177,7 @@ async function getSeparate(userId){
         contentType: 'application/json',
         data: JSON.stringify(person)
     });
-    console.log(JSON.stringify(response));
+
     for(let i=0;i<5;i++){
         if(response[i].period == 1){
             $('#separate1').html(`지원자 : ${response[i].applicant}명`);
@@ -253,7 +257,7 @@ async function addSeparate(){
             period: period,
             applicant:$('#separate').val()
         };
-        console.log(JSON.stringify(separate));
+
 
         let response = await $.ajax({
             type: 'post',
@@ -315,7 +319,7 @@ async function addPerson() {
             return;
         }
 
-        console.log(JSON.stringify(person));
+
 
         let response = await $.ajax({
             type: 'post',
@@ -434,7 +438,7 @@ async function editComment(button, id) {
             contentType: 'application/json',
             data: JSON.stringify(comment)
         });
-        console.log(JSON.stringify(response));
+
         originalName = null;
         storedPath = null;
         line.find('div:nth-child(2)').html(comment.content);
@@ -487,7 +491,7 @@ async function login() {
         data: JSON.stringify(login),
         success: (data) => {
             user=data;
-            console.log(JSON.stringify(data));
+
             if(data==""){
                 alert("로그인 실패");
                 location.reload();

@@ -9,4 +9,5 @@ import java.util.List;
 public interface TotalMapper {
     List<Total> findAll();
     Total findByYear(@Param("year") int year);
+    List<Total> currentTotal();
 }

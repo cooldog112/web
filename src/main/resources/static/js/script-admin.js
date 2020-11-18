@@ -90,7 +90,6 @@ async function login() {
         data: JSON.stringify(login),
         success: (data) => {
             user=data;
-            console.log(JSON.stringify(data));
             closeLoginDialog();
         },
         error: (error) => {
@@ -116,7 +115,7 @@ async function getSeparateList(){
         $('#func6Table').html(``);
 
         let temp = 0;
-        console.log(JSON.stringify(response))
+
         for (let i = 0; i < response.length; i++) {
             if(response[i].userId != temp){
                 addSeparateLine(response[i]);
@@ -168,7 +167,7 @@ async function getPersonList(){
     try {
         var response = await $.get('/person');
         $('#func2Table').html(``);
-        console.log(JSON.stringify(response));
+
         let temp = 0;
 
         for (let i = 0; i < response.length; i++) {
@@ -208,17 +207,36 @@ async function addPersonLine(response){
     `);
 }
 async function getTotalList(){
+    getCurrentTotal();
+
     try {
         let response = await $.get('/total');
+        let currentResponse = await $.get('/currentTotal');
         $('#func3Table').html(``);
-        console.log(JSON.stringify(response));
+        for (let i = 0; i < currentResponse.length; i++) {
+            currentResponse[i].year = 2021;
+        }
+        let j = 0;
         for (let i = 0; i < response.length; i++) {
+            if(response[i].year == 2020){
+                addTotalLine(currentResponse[j++]);
+            }
             addTotalLine(response[i]);
         }
     } catch (error) {
         $('#func3Table').html(JSON.stringify(error));
     }
 }
+async function getCurrentTotal(){
+     try {
+        let response = await $.get('/currentTotal');
+
+        console.log(JSON.stringify(response));
+     }catch (error) {
+        JSON.stringify(error);
+     }
+}
+
 async function addTotalLine(response){
     $('#func3Table').append(`
         <tr>

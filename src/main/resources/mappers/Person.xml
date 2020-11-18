@@ -42,4 +42,5 @@
                     group by period, user_id)
         order by user_id, period
     </select>
+
 </mapper>
