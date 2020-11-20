@@ -493,7 +493,7 @@ async function login() {
             user=data;
 
             if(data==""){
-                alert("로그인 실패");
+                alert("로그인에 실패했습니다. 아이디와 패스워드를 확인해주세요.");
                 location.reload();
             }
             if(user.account == "관리자"){

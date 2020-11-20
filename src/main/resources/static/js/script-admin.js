@@ -90,6 +90,11 @@ async function login() {
         data: JSON.stringify(login),
         success: (data) => {
             user=data;
+            if(data==""){
+                alert("로그인에 실패했습니다. 아이디와 패스워드를 확인해주세요.");
+                location.href="/index.html";
+            }
+
             closeLoginDialog();
         },
         error: (error) => {
