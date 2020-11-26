@@ -27,7 +27,7 @@ async function donutChart(){
     }
 
     var myPieChart1 = new Chart(ctx1, {
-  type: 'doughnut',
+  type: 'pie',
   data: {
     labels: ["응시율", "결시율"],
     datasets: [{
@@ -52,11 +52,11 @@ async function donutChart(){
     legend: {
       display: true
     },
-    cutoutPercentage: 80,
+//    cutoutPercentage: 80,
   },
     });
     var myPieChart2 = new Chart(ctx2, {
-     type: 'doughnut',
+     type: 'pie',
      data: {
        labels: ["응시자", "결시자"],
        datasets: [{
@@ -81,11 +81,11 @@ async function donutChart(){
        legend: {
          display: true
        },
-       cutoutPercentage: 80,
+
      },
    });
     var myPieChart3 = new Chart(ctx3, {
-        type: 'doughnut',
+        type: 'pie',
         data: {
           labels: ["응시자", "결시자"],
           datasets: [{
@@ -110,11 +110,11 @@ async function donutChart(){
           legend: {
             display: true
           },
-          cutoutPercentage: 80,
+
         },
       });
     var myPieChart4 = new Chart(ctx4, {
-        type: 'doughnut',
+        type: 'pie',
         data: {
           labels: ["응시자", "결시자"],
           datasets: [{
@@ -139,11 +139,11 @@ async function donutChart(){
           legend: {
             display: true
           },
-          cutoutPercentage: 80,
+//          cutoutPercentage: 80,
         },
       });
     var myPieChart5 = new Chart(ctx5, {
-        type: 'doughnut',
+        type: 'pie',
         data: {
           labels: ["응시자", "결시자"],
           datasets: [{
@@ -168,7 +168,7 @@ async function donutChart(){
           legend: {
             display: true
           },
-          cutoutPercentage: 80,
+//          cutoutPercentage: 80,
         },
       });
 }
