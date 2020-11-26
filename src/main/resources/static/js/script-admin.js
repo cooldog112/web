@@ -1,3 +1,4 @@
+
 function openInsertPost(){
     $('#container-2').show(500);
         return;
@@ -31,7 +32,8 @@ function openAdminMenu(num){
         getTotalList();
         $('#adminMenu3').show();
     }else if(num==4){
-        getTotalData();
+        barChart();
+        donutChart();
         $('#adminMenu4').show();
     }else if(num==5){
          var newwindow = '_blank';

@@ -32,7 +32,7 @@ var ctx = document.getElementById("myBarChart");
 
 const colors = ['#cd853f','#f4a460','#000080','#c3e6cb','#dc3545','#00bfff','#006400'];
 
-async function getTotalData(){
+async function barChart(){
 
     var arr = new Array(7);
     for(var i=0;i<arr.length;i++){
@@ -47,8 +47,6 @@ async function getTotalData(){
         for(var i =0 ; i<currentResponse.length; i++){
             arr[6][currentResponse[i].period-1] = (currentResponse[i].absentee / currentResponse[i].applicant * 100).toFixed(2);
         }
-        console.log(arr);
-
     }catch (error) {
         alert(JSON.stringify(error));
     }
@@ -156,7 +154,7 @@ async function getTotalData(){
           }],
         },
         legend: {
-          display: false
+          display: true
         },
         tooltips: {
           titleMarginBottom: 10,
