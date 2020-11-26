@@ -167,7 +167,7 @@
                 </div>
                 <div class="table-responsive">
                   <table class="table table-bordered" style="text-align:center" id="dataTable1" width="100%" cellspacing="0">
-                    <thead>
+                    <thead style="background-color:#4e73df; color:#fffafa">
                     <tr>
                       <th>시험장번호</th>
                       <th>시험장명</th>
@@ -198,7 +198,7 @@
                 </div>
                 <div class="table-responsive">
                   <table class="table table-bordered" style="font-size:12px; text-align:center" id="dataTable2" width="100%" cellspacing="0" align="center">
-                    <thead>
+                    <thead style="background-color:#4e73df; color:#fffafa">
                     <tr>
                       <th rowspan="2" align="center">번<br>호</th>
                       <th rowspan="2" align="center">시험장</th>
@@ -249,7 +249,7 @@
                 </div>
                 <div class="table-responsive">
                   <table class="table table-bordered" style="text-align:center" id="dataTable3" width="100%" cellspacing="0" align="center">
-                    <thead>
+                    <thead style="background-color:#4e73df; color:#fffafa">
                     <tr>
                       <th align="center">연도</th>
                       <th align="center">교시</th>
@@ -272,10 +272,10 @@
 <!--          대구 현황 종합 차트-->
           <div id="adminMenu4" style="display:none;">
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">대구 현황 종합 차트 (미완성)</h1>
+            <h1 class="h3 mb-2 text-gray-800">대구 현황 종합 차트</h1>
             <!-- Content Row -->
             <div class="row">
-              <div class="col-xl-8 col-lg-7">
+              <div class="col-xl-12 col-lg-10">
 
                 <!-- Bar Chart -->
                 <div class="card shadow mb-4">
@@ -292,21 +292,21 @@
               </div>
 
               <!-- Donut Chart -->
-              <div class="col-xl-4 col-lg-5">
-                <div class="card shadow mb-4">
-                  <!-- Card Header - Dropdown -->
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">2021년 1교시 현황</h6>
-                  </div>
-                  <!-- Card Body -->
-                  <div class="card-body">
-                    <div class="chart-pie pt-4">
-                      <canvas id="myPieChart"></canvas>
-                    </div>
-                    <hr>
-                  </div>
-                </div>
-              </div>
+<!--              <div class="col-xl-4 col-lg-5">-->
+<!--                <div class="card shadow mb-4">-->
+<!--                  &lt;!&ndash; Card Header - Dropdown &ndash;&gt;-->
+<!--                  <div class="card-header py-3">-->
+<!--                    <h6 class="m-0 font-weight-bold text-primary">2021년 1교시 현황</h6>-->
+<!--                  </div>-->
+<!--                  &lt;!&ndash; Card Body &ndash;&gt;-->
+<!--                  <div class="card-body">-->
+<!--                    <div class="chart-pie pt-4">-->
+<!--                      <canvas id="myPieChart"></canvas>-->
+<!--                    </div>-->
+<!--                    <hr>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
             </div>
 
 
@@ -325,7 +325,7 @@
                 </div>
                 <div class="table-responsive">
                   <table class="table table-bordered" style="text-align:center"id="dataTable6" width="100%" cellspacing="0" align="center">
-                    <thead>
+                    <thead style="background-color:#4e73df; color:#fffafa">
                     <tr>
                       <th rowspan="2" align="center">번호</th>
                       <th rowspan="2" align="center">시험장</th>
@@ -490,14 +490,14 @@
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+
 
   <!-- Page level plugins -->
   <script src="vendor/chart.js/Chart.min.js"></script>
 
   <!-- Page level custom scripts -->
 <!--  <script src="js/demo/chart-area-demo.js"></script>-->
-  <script src="js/demo/chart-pie-demo.js"></script>
+<!--  <script src="js/demo/chart-pie-demo.js"></script>-->
   <script src="js/demo/chart-bar-demo.js"></script>
 
   <script src="js/script-admin.js"></script>
@@ -507,6 +507,8 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+
+  <script src="js/sb-admin-2.min.js"></script>
 
 </body>
 

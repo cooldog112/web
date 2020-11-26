@@ -16,7 +16,7 @@
 
 
     <select id="currentTotal" resultType="com.dge.web.domain.Total">
-        select period, period, sum(applicant) as applicant, sum(candidate) as candidate, sum(absentee) as absentee
+        select period, sum(applicant) as applicant, sum(candidate) as candidate, sum(absentee) as absentee
         from person p left join user u on p.user_id = u.id
         where p.id in (select max(id)
             from person

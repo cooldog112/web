@@ -31,6 +31,7 @@ function openAdminMenu(num){
         getTotalList();
         $('#adminMenu3').show();
     }else if(num==4){
+        getTotalData();
         $('#adminMenu4').show();
     }else if(num==5){
          var newwindow = '_blank';
@@ -130,15 +131,28 @@ async function getSeparateList(){
     }
 }
 async function addSeparateLine(response){
-    $('#func6Table').append(`
-        <tr id="aline${response.userId}">
-          <td>${response.userId}</td>
-          <td>${response.account}</td>
-          <td>${response.testRoomNum}</td>
-          <td>${response.applicantNum}</td>
-          <td>${response.applicant}</td>
-        </tr>
-    `);
+    if(response.userId%2 == 0){
+        $('#func6Table').append(`
+            <tr id="aline${response.userId}" style="background-color:#eeffff">
+              <td>${response.userId}</td>
+              <td>${response.account}</td>
+              <td>${response.testRoomNum}</td>
+              <td>${response.applicantNum}</td>
+              <td>${response.applicant}</td>
+            </tr>
+        `);
+    }else{
+        $('#func6Table').append(`
+            <tr id="aline${response.userId}">
+              <td>${response.userId}</td>
+              <td>${response.account}</td>
+              <td>${response.testRoomNum}</td>
+              <td>${response.applicantNum}</td>
+              <td>${response.applicant}</td>
+            </tr>
+        `);
+    }
+
 }
 async function addSeparateCols(response){
     let line2 = $(`#aline${response.userId}`);
@@ -148,19 +162,36 @@ async function addSeparateCols(response){
 
 }
 async function addReportLine(response){
-    $('#func1Table').append(`
-        <tr id="line${response.id}">
-          <td>${response.userId}</td>
-          <td>${response.account}</td>
-          <td>${response.testRoomNum}</td>
-          <td>${response.applicantNum}</td>
-          <td>${response.error}</td>
-          <td>${response.position}</td>
-          <td>${response.name}</td>
-          <td>${response.updated.substring(0,19)}</td>
-          <td>${response.content}</td>
-        </tr>
-    `);
+    if(response.userId%2 ==0){
+        $('#func1Table').append(`
+            <tr id="line${response.id}" style="background-color:#eeffff">
+              <td>${response.userId}</td>
+              <td>${response.account}</td>
+              <td>${response.testRoomNum}</td>
+              <td>${response.applicantNum}</td>
+              <td>${response.error}</td>
+              <td>${response.position}</td>
+              <td>${response.name}</td>
+              <td>${response.updated.substring(0,19)}</td>
+              <td>${response.content}</td>
+            </tr>
+        `);
+    }else {
+        $('#func1Table').append(`
+            <tr id="line${response.id}">
+              <td>${response.userId}</td>
+              <td>${response.account}</td>
+              <td>${response.testRoomNum}</td>
+              <td>${response.applicantNum}</td>
+              <td>${response.error}</td>
+              <td>${response.position}</td>
+              <td>${response.name}</td>
+              <td>${response.updated.substring(0,19)}</td>
+              <td>${response.content}</td>
+            </tr>
+        `);
+    }
+
 }
 
 async function getPersonList(){
@@ -193,18 +224,34 @@ async function addPersonCols(response){
     `);
 }
 async function addPersonLine(response){
-    $('#func2Table').append(`
-        <tr id="line${response.userId}">
-          <td>${response.userId}</td>
-          <td>${response.account}</td>
-          <td>${response.testRoomNum}개</td>
-          <td>${response.applicantNum}명</td>
-          <td>${response.applicant}</td>
-          <td>${response.absentee}</td>
-          <td>${response.candidate}</td>
-          <td>${(response.absentee / response.applicant * 100).toFixed(2)}</td>
-        </tr>
-    `);
+    if(response.userId%2 == 0) {
+        $('#func2Table').append(`
+            <tr id="line${response.userId}" style="background-color:#eeffff">
+              <td>${response.userId}</td>
+              <td>${response.account}</td>
+              <td>${response.testRoomNum}개</td>
+              <td>${response.applicantNum}명</td>
+              <td>${response.applicant}</td>
+              <td>${response.absentee}</td>
+              <td>${response.candidate}</td>
+              <td>${(response.absentee / response.applicant * 100).toFixed(2)}</td>
+            </tr>
+        `);
+    }else{
+        $('#func2Table').append(`
+            <tr id="line${response.userId}">
+              <td>${response.userId}</td>
+              <td>${response.account}</td>
+              <td>${response.testRoomNum}개</td>
+              <td>${response.applicantNum}명</td>
+              <td>${response.applicant}</td>
+              <td>${response.absentee}</td>
+              <td>${response.candidate}</td>
+              <td>${(response.absentee / response.applicant * 100).toFixed(2)}</td>
+            </tr>
+        `);
+    }
+
 }
 async function getTotalList(){
     getCurrentTotal();
@@ -238,18 +285,35 @@ async function getCurrentTotal(){
 }
 
 async function addTotalLine(response){
-    $('#func3Table').append(`
-        <tr>
-          <td>${response.year}</td>
-          <td>${response.period}</td>
-          <td>${response.applicant}</td>
-          <td>${response.candidate}</td>
-          <td>${response.absentee}</td>
-          <td>${(response.candidate / response.applicant * 100).toFixed(2)}%</td>
-          <td>${(response.absentee / response.applicant * 100).toFixed(2)}%</td>
-          <td></td>
-        </tr>
-    `);
+    if(response.year == 2021){
+        $('#func3Table').append(`
+            <tr style="background-color : #ffe4e1">
+              <td>${response.year}</td>
+              <td>${response.period}</td>
+              <td>${response.applicant}</td>
+              <td>${response.candidate}</td>
+              <td>${response.absentee}</td>
+              <td>${(response.candidate / response.applicant * 100).toFixed(2)}%</td>
+              <td>${(response.absentee / response.applicant * 100).toFixed(2)}%</td>
+              <td></td>
+            </tr>
+        `);
+    }else{
+        $('#func3Table').append(`
+            <tr>
+              <td>${response.year}</td>
+              <td>${response.period}</td>
+              <td>${response.applicant}</td>
+              <td>${response.candidate}</td>
+              <td>${response.absentee}</td>
+              <td>${(response.candidate / response.applicant * 100).toFixed(2)}%</td>
+              <td>${(response.absentee / response.applicant * 100).toFixed(2)}%</td>
+              <td></td>
+            </tr>
+        `);
+    }
+
+
 }
 async function addPost(){
     try {
