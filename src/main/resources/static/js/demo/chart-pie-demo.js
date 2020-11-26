@@ -137,7 +137,7 @@ async function donutChart(){
             caretPadding: 10,
           },
           legend: {
-            display: false
+            display: true
           },
           cutoutPercentage: 80,
         },
@@ -166,7 +166,7 @@ async function donutChart(){
             caretPadding: 10,
           },
           legend: {
-            display: false
+            display: true
           },
           cutoutPercentage: 80,
         },
